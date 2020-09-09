@@ -1,19 +1,43 @@
+const form = document.getElementById("book-form");
+form.addEventListener("submit", function (event) {
+  event.preventDefault();
+  const author = form.elements.namedItem("author").value;
+  const title = form.elements.namedItem("title").value;
+  const pageNumber = form.elements.namedItem("pages").value;
+  const readStatus = form.elements.namedItem("read-status").value;
+  if (author && title && pages && readStatus) {
+    addBookToLibrary(author, title, pageNumber, readStatus);
+    showBook();
+    form.reset();
+  } else {
+    alert("Fill all informations correctly ");
+  }
+});
+
 const myBooks = document.querySelector(".book");
 const formButton = document.querySelector(".display-form");
 const formSlot = document.querySelector(".form-space");
 formButton.addEventListener("click", () => {
   formSlot.style.display = "block";
 });
-const myLibrary = ["harry potter", "hobbit"];
+const myLibrary = [];
 
-// function Book() {}
+function Book(author, title, pageNumber, readStatus) {
+  this.author = author;
+  this.title = title;
+  this.pageNumber = pageNumber;
+  this.readStatus = readStatus;
+}
 
-// function addBookToLibrary() {}
+function addBookToLibrary(author, title, pageNumber, readStatus) {
+  const book = new Book(author, title, pageNumber, readStatus);
+  myLibrary.push(book);
+}
 
 function showBook() {
   let ourBooks = "";
   myLibrary.forEach((book, bookIndex) => {
-    ourBooks += `<div> ${book} </div>
+    ourBooks += `<div> ${book.title} </div>
             <button onclick="removeBook(${bookIndex})" >Remove this book</button>
     `;
   });
