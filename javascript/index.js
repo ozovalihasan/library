@@ -1,19 +1,21 @@
-const myBooks = document.querySelector(".book");
-const formButton = document.querySelector(".display-form");
-const formSlot = document.querySelector(".form-space");
+const myBooks = document.querySelector('.book');
+const formButton = document.querySelector('.display-form');
+const formSlot = document.querySelector('.form-space');
 
-formButton.addEventListener("click", () => (formSlot.style.display = "block"));
-let myLibrary = ["harry potter", "hobbit"];
+formButton.addEventListener('click', () => {
+  formSlot.style.display = 'block';
+});
+const myLibrary = ['harry potter', 'hobbit'];
 
-function Book() {}
+// function Book() {}
 
-function addBookToLibrary() {}
+// function addBookToLibrary() {}
 
 function showBook() {
-  let ourBooks = "";
-  for (let book of myLibrary) {
+  let ourBooks = '';
+  myLibrary.forEach((book) => {
     ourBooks += `<div> ${book} </div> `;
-  }
+  });
   myBooks.innerHTML = ourBooks;
 }
 
