@@ -29,6 +29,11 @@ function Book(author, title, pageNumber, readStatus) {
   this.readStatus = readStatus;
 }
 
+Book.prototype.toggleRead = function () {
+  return this.readStatus === "Read"
+    ? (this.readStatus = "Not yet read")
+    : (this.readStatus = "Read");
+};
 function addBookToLibrary(author, title, pageNumber, readStatus) {
   const book = new Book(author, title, pageNumber, readStatus);
   myLibrary.push(book);
@@ -39,10 +44,12 @@ function showBook() {
   myLibrary.forEach((book, bookIndex) => {
     ourBooks += `<div> ${book.title} </div>
             <button onclick="removeBook(${bookIndex})" >Remove this book</button>
+            <button onclick="changeReadStatus(${bookIndex})" >${book.readStatus}</button>
     `;
   });
   myBooks.innerHTML = ourBooks;
 }
+
 
 function removeBook(index) {
   myLibrary.splice(index, 1);
