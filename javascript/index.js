@@ -1,3 +1,6 @@
+/*
+  eslint-disable no-unused-vars, no-alert
+*/
 const myBooks = document.querySelector('.book');
 const formButton = document.querySelector('.display-form');
 const formSlot = document.querySelector('.form-space');
