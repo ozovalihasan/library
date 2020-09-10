@@ -1,7 +1,7 @@
-const myBooks = document.querySelector(".book");
-const formButton = document.querySelector(".display-form");
-const formSlot = document.querySelector(".form-space");
-const form = document.getElementById("book-form");
+const myBooks = document.querySelector('.book');
+const formButton = document.querySelector('.display-form');
+const formSlot = document.querySelector('.form-space');
+const form = document.getElementById('book-form');
 const myLibrary = localStorage.myLibrary
   ? JSON.parse(localStorage.myLibrary)
   : [];
@@ -14,39 +14,23 @@ function Book(author, title, pageNumber, readStatus) {
 }
 
 Book.prototype.toggleRead = function () {
-  return this.readStatus === "Read"
-    ? (this.readStatus = "Not yet read")
-    : (this.readStatus = "Read");
-};
-
-form.addEventListener("submit", function (event) {
-  event.preventDefault();
-  const author = form.elements.namedItem("author").value;
-  const title = form.elements.namedItem("title").value;
-  const pageNumber = form.elements.namedItem("pages").value;
-  const readStatus = form.elements.namedItem("read-status").value;
-  if (author && title && pageNumber && readStatus) {
-    addBookToLibrary(author, title, pageNumber, readStatus);
-    showBook();
-    form.reset();
+  if (this.readStatus === 'Read') {
+    this.readStatus = 'Not yet read';
   } else {
-    alert("Fill all informations correctly ");
+    this.readStatus = 'Read';
   }
-});
-
-formButton.addEventListener("click", () => {
-  formSlot.style.display = "block";
-});
+  return this.readStatus;
+};
 
 function addBookToLibrary(author, title, pageNumber, readStatus) {
   const book = new Book(author, title, pageNumber, readStatus);
   myLibrary.push(book);
   localStorage.myLibrary = JSON.stringify(myLibrary);
-  formSlot.style.display = "none";
+  formSlot.style.display = 'none';
 }
 
 function showBook() {
-  let ourBooks = "";
+  let ourBooks = '';
   myLibrary.forEach((book, bookIndex) => {
     ourBooks += `
       <div class="col-sm-12 col-md-6 p-3">
@@ -68,6 +52,25 @@ function showBook() {
   });
   myBooks.innerHTML = ourBooks;
 }
+
+form.addEventListener('submit', (event) => {
+  event.preventDefault();
+  const author = form.elements.namedItem('author').value;
+  const title = form.elements.namedItem('title').value;
+  const pageNumber = form.elements.namedItem('pages').value;
+  const readStatus = form.elements.namedItem('read-status').value;
+  if (author && title && pageNumber && readStatus) {
+    addBookToLibrary(author, title, pageNumber, readStatus);
+    showBook();
+    form.reset();
+  } else {
+    alert('Fill all informations correctly ');
+  }
+});
+
+formButton.addEventListener('click', () => {
+  formSlot.style.display = 'block';
+});
 
 function changeReadStatus(bookIndex) {
   const book = new Book();
