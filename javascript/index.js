@@ -49,7 +49,7 @@ function showBook() {
   let ourBooks = "";
   myLibrary.forEach((book, bookIndex) => {
     ourBooks += `
-      <div class="col-sm-12 col-md-6">
+      <div class="col-sm-12 col-md-6 p-3">
         <div class="card">
           <div class="card-body">
             <h6 class="card-title">${book.title}</h6>
@@ -68,9 +68,12 @@ function showBook() {
   });
   myBooks.innerHTML = ourBooks;
 }
+
 function changeReadStatus(bookIndex) {
-  const book = myLibrary[bookIndex];
-  book.toggleRead();
+  const book = new Book();
+  book.readStatus = myLibrary[bookIndex].readStatus;
+  myLibrary[bookIndex].readStatus = book.toggleRead();
+  localStorage.myLibrary = JSON.stringify(myLibrary);
   showBook();
 }
 
