@@ -49,7 +49,11 @@ function showBook() {
   });
   myBooks.innerHTML = ourBooks;
 }
-
+function changeReadStatus(bookIndex) {
+  const book = myLibrary[bookIndex];
+  book.toggleRead();
+  showBook();
+}
 
 function removeBook(index) {
   myLibrary.splice(index, 1);
