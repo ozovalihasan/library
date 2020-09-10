@@ -8,3 +8,12 @@
 .form-space {
   display: none;
 }
+
+body {
+  background-image: url(../images/library.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  margin: 0;
+  height: 100vh;
+}
