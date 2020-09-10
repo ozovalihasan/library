@@ -5,7 +5,7 @@ form.addEventListener("submit", function (event) {
   const title = form.elements.namedItem("title").value;
   const pageNumber = form.elements.namedItem("pages").value;
   const readStatus = form.elements.namedItem("read-status").value;
-  if (author && title && pages && readStatus) {
+  if (author && title && pageNumber && readStatus) {
     addBookToLibrary(author, title, pageNumber, readStatus);
     showBook();
     form.reset();
