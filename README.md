@@ -4,7 +4,7 @@
 
 ![screenshot](./images/Screenshot_Library.png)
 
- View the app live ![here](https://ozovalihasan.github.io/library/)
+ View the app live [here](https://ozovalihasan.github.io/library/)
  
 ## Built With
 
