@@ -20,7 +20,10 @@ const formSlot = document.querySelector(".form-space");
 formButton.addEventListener("click", () => {
   formSlot.style.display = "block";
 });
-const myLibrary = [];
+
+const myLibrary = localStorage.myLibrary
+  ? JSON.parse(localStorage.myLibrary)
+  : [];
 
 function Book(author, title, pageNumber, readStatus) {
   this.author = author;
@@ -37,6 +40,8 @@ Book.prototype.toggleRead = function () {
 function addBookToLibrary(author, title, pageNumber, readStatus) {
   const book = new Book(author, title, pageNumber, readStatus);
   myLibrary.push(book);
+  localStorage.myLibrary = JSON.stringify(myLibrary);
+  formSlot.style.display = "none";
 }
 
 function showBook() {
