@@ -9,28 +9,28 @@ const myLibrary = localStorage.myLibrary
   ? JSON.parse(localStorage.myLibrary)
   : [];
 
-const Book = (author, title, pageNumber, readStatus) => {
-  const toggleRead = function () {
-    console.log(readStatus);
-    if (readStatus === "Read") {
-      readStatus = "Not yet read";
+class Book {
+  constructor(author, title, pageNumber, readStatus) {
+    this.author = author;
+    this.title = title;
+    this.pageNumber = pageNumber;
+    this.readStatus = readStatus;
+  }
+
+  toggleRead() {
+    if (this.readStatus === "Read") {
+      this.readStatus = "Not yet read";
     } else {
-      readStatus = "Read";
+      this.readStatus = "Read";
     }
 
-    return readStatus;
-  };
-  return {
-    author,
-    title,
-    pageNumber,
-    readStatus,
-    toggleRead,
-  };
-};
+    return this.readStatus;
+  }
+}
 
 function addBookToLibrary(author, title, pageNumber, readStatus) {
-  const book = Book(author, title, pageNumber, readStatus);
+  const book = new Book(author, title, pageNumber, readStatus);
+  console.log(book);
   myLibrary.push(book);
   localStorage.myLibrary = JSON.stringify(myLibrary);
   formSlot.style.display = "none";
@@ -61,7 +61,7 @@ function showBook() {
 }
 
 function changeReadStatus(bookIndex) {
-  book = myLibrary[bookIndex];
+  const book = new Book(...Object.values(myLibrary[bookIndex]));
   myLibrary[bookIndex].readStatus = book.toggleRead();
   localStorage.myLibrary = JSON.stringify(myLibrary);
   showBook();
@@ -80,6 +80,7 @@ form.addEventListener("submit", (event) => {
   const pageNumber = form.elements.namedItem("pages").value;
   const readStatus = form.elements.namedItem("read-status").value;
   if (author && title && pageNumber && readStatus) {
+    console.log(author, title, pageNumber, readStatus);
     addBookToLibrary(author, title, pageNumber, readStatus);
     showBook();
     form.reset();
