@@ -23,8 +23,6 @@ class Book {
     } else {
       this.readStatus = "Read";
     }
-
-    return this.readStatus;
   }
 }
 
@@ -62,7 +60,8 @@ function showBook() {
 
 function changeReadStatus(bookIndex) {
   const book = new Book(...Object.values(myLibrary[bookIndex]));
-  myLibrary[bookIndex].readStatus = book.toggleRead();
+  book.toggleRead();
+  myLibrary[bookIndex] = book;
   localStorage.myLibrary = JSON.stringify(myLibrary);
   showBook();
 }
