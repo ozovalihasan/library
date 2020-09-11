@@ -1,0 +1,20 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  outline: none;
+}
+
+.form-space {
+  display: none;
+  background-color: rgb(230, 243, 243);
+}
+
+body {
+  background-image: url(../images/library.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  margin: 0;
+  height: 100vh;
+}
