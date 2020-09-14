@@ -9,21 +9,22 @@ const myLibrary = localStorage.myLibrary
   ? JSON.parse(localStorage.myLibrary)
   : [];
 
-function Book(author, title, pageNumber, readStatus) {
-  this.author = author;
-  this.title = title;
-  this.pageNumber = pageNumber;
-  this.readStatus = readStatus;
-}
-
-Book.prototype.toggleRead = function () {
-  if (this.readStatus === 'Read') {
-    this.readStatus = 'Not yet read';
-  } else {
-    this.readStatus = 'Read';
+class Book {
+  constructor(author, title, pageNumber, readStatus) {
+    this.author = author;
+    this.title = title;
+    this.pageNumber = pageNumber;
+    this.readStatus = readStatus;
   }
-  return this.readStatus;
-};
+
+  toggleRead() {
+    if (this.readStatus === 'Read') {
+      this.readStatus = 'Not yet read';
+    } else {
+      this.readStatus = 'Read';
+    }
+  }
+}
 
 function addBookToLibrary(author, title, pageNumber, readStatus) {
   const book = new Book(author, title, pageNumber, readStatus);
@@ -56,6 +57,20 @@ function showBook() {
   myBooks.innerHTML = ourBooks;
 }
 
+function changeReadStatus(bookIndex) {
+  const book = new Book(...Object.values(myLibrary[bookIndex]));
+  book.toggleRead();
+  myLibrary[bookIndex] = book;
+  localStorage.myLibrary = JSON.stringify(myLibrary);
+  showBook();
+}
+
+function removeBook(index) {
+  myLibrary.splice(index, 1);
+  localStorage.myLibrary = JSON.stringify(myLibrary);
+  showBook();
+}
+
 form.addEventListener('submit', (event) => {
   event.preventDefault();
   const author = form.elements.namedItem('author').value;
@@ -74,19 +89,5 @@ form.addEventListener('submit', (event) => {
 formButton.addEventListener('click', () => {
   formSlot.style.display = 'block';
 });
-
-function changeReadStatus(bookIndex) {
-  const book = new Book();
-  book.readStatus = myLibrary[bookIndex].readStatus;
-  myLibrary[bookIndex].readStatus = book.toggleRead();
-  localStorage.myLibrary = JSON.stringify(myLibrary);
-  showBook();
-}
-
-function removeBook(index) {
-  myLibrary.splice(index, 1);
-  localStorage.myLibrary = JSON.stringify(myLibrary);
-  showBook();
-}
 
 showBook();
