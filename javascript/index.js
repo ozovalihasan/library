@@ -1,10 +1,10 @@
 /*
   eslint-disable no-unused-vars, no-alert
 */
-const myBooks = document.querySelector(".book");
-const formButton = document.querySelector(".display-form");
-const formSlot = document.querySelector(".form-space");
-const form = document.getElementById("book-form");
+const myBooks = document.querySelector('.book');
+const formButton = document.querySelector('.display-form');
+const formSlot = document.querySelector('.form-space');
+const form = document.getElementById('book-form');
 const myLibrary = localStorage.myLibrary
   ? JSON.parse(localStorage.myLibrary)
   : [];
@@ -18,24 +18,23 @@ class Book {
   }
 
   toggleRead() {
-    if (this.readStatus === "Read") {
-      this.readStatus = "Not yet read";
+    if (this.readStatus === 'Read') {
+      this.readStatus = 'Not yet read';
     } else {
-      this.readStatus = "Read";
+      this.readStatus = 'Read';
     }
   }
 }
 
 function addBookToLibrary(author, title, pageNumber, readStatus) {
   const book = new Book(author, title, pageNumber, readStatus);
-  console.log(book);
   myLibrary.push(book);
   localStorage.myLibrary = JSON.stringify(myLibrary);
-  formSlot.style.display = "none";
+  formSlot.style.display = 'none';
 }
 
 function showBook() {
-  let ourBooks = "";
+  let ourBooks = '';
   myLibrary.forEach((book, bookIndex) => {
     ourBooks += `
       <div class="col-sm-12 col-md-6 p-3">
@@ -72,24 +71,23 @@ function removeBook(index) {
   showBook();
 }
 
-form.addEventListener("submit", (event) => {
+form.addEventListener('submit', (event) => {
   event.preventDefault();
-  const author = form.elements.namedItem("author").value;
-  const title = form.elements.namedItem("title").value;
-  const pageNumber = form.elements.namedItem("pages").value;
-  const readStatus = form.elements.namedItem("read-status").value;
+  const author = form.elements.namedItem('author').value;
+  const title = form.elements.namedItem('title').value;
+  const pageNumber = form.elements.namedItem('pages').value;
+  const readStatus = form.elements.namedItem('read-status').value;
   if (author && title && pageNumber && readStatus) {
-    console.log(author, title, pageNumber, readStatus);
     addBookToLibrary(author, title, pageNumber, readStatus);
     showBook();
     form.reset();
   } else {
-    alert("Fill all informations correctly ");
+    alert('Fill all informations correctly ');
   }
 });
 
-formButton.addEventListener("click", () => {
-  formSlot.style.display = "block";
+formButton.addEventListener('click', () => {
+  formSlot.style.display = 'block';
 });
 
 showBook();
