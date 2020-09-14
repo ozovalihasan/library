@@ -4,8 +4,8 @@
 
 ![screenshot](./images/Screenshot_Library.png)
 
- View the app live [here](https://ozovalihasan.github.io/library/)
- 
+View the app live [here](https://ozovalihasan.github.io/library/)
+
 ## Built With
 
 - Javascript, HTML and CSS
@@ -46,6 +46,10 @@ To get a local copy up and running follow these simple example steps.
 Contributions, issues and feature requests are welcome!
 
 Feel free to check the [issues page](https://github.com/ozovalihasan/library/issues).
+
+## Acknowledgments
+
+Thanks to [Alfons Morales](https://unsplash.com/@alfonsmc10) for sharing their work on Unsplash.
 
 ## Show your support
 
